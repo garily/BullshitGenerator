@@ -3,11 +3,51 @@
 
 <head>
     <title>でたらめ文章ジェネレーター</title>
+    <style>
+        h1,
+        .入力 {
+            margin: 1rem;
+        }
+
+        .入力 {
+            padding-bottom: 1rem;
+        }
+
+        #論文 {
+            max-width: 1200px;
+            margin: 1rem 1rem;
+        }
+
+        #論文>div::first-letter {
+            initial-letter: 2;
+            -ms-initial-letter: 2;
+            -moz-initial-letter: 2;
+            -webkit-initial-letter: 2;
+        }
+
+        ul {
+            padding: 0 1rem;
+            list-style: none;
+        }
+
+        a,
+        a:visited {
+            color: rgb(9, 47, 104);
+        }
+    </style>
 </head>
 
 <body>
     <h1>でたらめ文章ジェネレーター</h1>
-    <div>主旨<input value="消費税10%増税"></input><button onclick="文章を作成する()">生成</button></div>
+    <div class="著作者">
+        <ul>
+            <li>Gary Li <a
+                    href="https://github.com/garily/BullshitGenerator-Japanese">garily/BullshitGenerator-Japanese</a>
+            </li>
+            <li>原作 <a href="https://github.com/menzi11/BullshitGenerator">menzi11/BullshitGenerator</a></li>
+        </ul>
+    </div>
+    <div class="入力">主旨&nbsp;<input value="消費税10%増税"></input><button onclick="文章を作成する()">作成</button></div>
     <div id="論文"></div>
     <script>
         "use strict";
@@ -26,7 +66,7 @@
             "主旨と言いますと、主旨をどう書くのが要となる。 ",
             "一般論を述べると、問題のコツをマスターすれば、残りは全て刃を迎えて解くと思われます。 ",
             "問題のコツは到底なんなんでしょうか？ ",
-            "主旨なんのことで発生したのか？",
+            "主旨はなんのことで発生したのか？",
             "誰でも時々こんな問題に遭遇するのでしょう。  こんな問題に対面している時、 ",
             "一般的には、我々は必ず慎重に考えなければなりません。 ",
             "主旨は一体どんな存在であるかをずばり考えることです。 ",
@@ -46,6 +86,9 @@
             "とりあえす、 ",
             "こうであれば、 ",
             "上に述べた通り、",
+            "この方面から考えるなら、",
+            "考え直してみれば、",
+            "しかしながら、こんなことでも，主旨の現れにはある意味意義を持っていると考えられる。 ",
         ]
 
         const ことわざ = [
@@ -157,11 +200,14 @@
             "それによって私は啓発されました、 ",
             "諸君にもこの言葉の意味をちゃんと味わわせようと思います。 ",
             "短いながら、この言葉は私に様々な考えを持たせます。 ",
+            "こうした中、私の疑問が解けました。",
         ]
 
         const 引用の表し = [
             "はこう言いました",
             "は不意にこう言いました",
+            "はこのモットーが言いました",
+            "はこう言ったことがある",
         ]
 
         function 適当に選ぶ(列表) {
@@ -190,7 +236,7 @@
             if (句切り[ 句切り.length - 1 ] === " ") {
                 句切り = 句切り.slice(0, -2)
             }
-            return "　　" + 句切り + "。 "
+            return "" + 句切り + "。 "
         }
 
         function 文章を作成する() {
