@@ -60,7 +60,20 @@
             <li>原作 <a href="https://github.com/menzi11/BullshitGenerator">menzi11/BullshitGenerator</a></li>
         </ul>
     </div>
-    <div class="入力">主旨&nbsp;<input value="消費税10%増税"></input><button onclick="文章を作成する()">作成</button></div>
+    <div class="入力">
+        <table>
+            <tr>
+                <td>主旨</td>
+                <td><input id="主旨" value="消費税10%増税"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>文字数</td>
+                <td><input id="文字数" value="6000"></td>
+                <td><button onclick="文章を作成する()">作成</button></td>
+            </tr>
+        </table>
+    </div>
     <div id="論文"></div>
     <script>
         "use strict";
@@ -68,6 +81,7 @@
             return document.querySelector(selector);
         }
         let 主旨 = "消費税10%増税";
+        let 文字数 = 6000;
 
         const 議論 = [
             "今では、趣旨に関する問題を解決するのが一番大事です。そこで、",
@@ -234,7 +248,7 @@
         }
 
         function 何か名言を出す() {
-            let 心に残る言葉 = 適当に選ぶ(ことわざ)
+            let 心に残る言葉 = 適当に選ぶ(ことわざ);
             心に残る言葉 = "昔" + 心に残る言葉[ 0 ] + 適当に選ぶ(引用の表し) + "、「" + 心に残る言葉[ 1 ] + "」" + 適当に選ぶ(接尾辞);
             return 心に残る言葉;
         }
@@ -253,12 +267,14 @@
         }
 
         function 文章を作成する() {
-            主旨 = $('input').value;
+            主旨 = $('#主旨').value;
+            文字数 = $('#文字数').value;
+
             const 文章 = [];
             for (let 空白 in 主旨) {
                 let 句切り = "";
                 let 文章の長さ = 0;
-                while (文章の長さ < 6000) {
+                while (文章の長さ < (parseInt(文字数) || 6000)) {
                     let 乱数 = 適当に乱数を選ぶ();
                     if (乱数 < 5 && 句切り.length > 200) {
                         句切り = 段落をつくる(句切り);
